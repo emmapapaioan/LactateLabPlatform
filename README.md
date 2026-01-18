@@ -1,5 +1,9 @@
 # 🧪 Lactate Lab
 
+
+https://github.com/user-attachments/assets/8bd80d48-ce0c-4161-9d51-43abbd352f35
+
+
 Lactate Lab is a **private web application** used to manage lactate test data and perform basic performance analysis for cycling training.
 
 The application is built with **Angular 21**, a **Node.js/Express backend**, and is deployed on **Google Cloud Run** using **Docker**.
