@@ -98,19 +98,15 @@ This allows coaches to compare **different physiological interpretations of the 
 Each test produces the following outputs.
 
 ### Lactate Curve Graph
+![Lactate Curve](lactate-curve.jpg)
+![Lactate Curve](lactate-curve-with-washout.jpg)
+![Lactate Curve](lactate-curve-adjust.jpg)
 
 Displays:
 
 - Lactate progression per stage
 - Workload vs lactate relationship
 - LT1 and LT2 threshold points
-
-### Stage Data Table
-
-Structured overview of the recorded test:
-
-| Stage | Length | Power / Pace | Lactate | Heart Rate |
-|-------|--------|--------------|---------|------------|
 
 ### Coach Feedback
 
@@ -121,6 +117,13 @@ Each test includes a **coach feedback section** where the coach can write:
 - Observations from the test  
 
 Athletes can view this feedback when accessing their results.
+![Lactate Curve](coach-notes.jpg)
+
+### Stage Data Table
+
+Structured overview of the recorded test:
+
+![Lactate Curve](test-stages.jpg)
 
 ---
 
