@@ -1,164 +1,309 @@
-# 🧪 Lactate Lab
+# Lactate Lab
 
+**Lactate Lab** is a cloud-based web application for **managing and analyzing lactate testing data** for endurance athletes.
 
-https://github.com/user-attachments/assets/8bd80d48-ce0c-4161-9d51-43abbd352f35
+The platform allows coaches to record lactate tests, analyze physiological thresholds (**LT1 / LT2**), generate training zones, and share results with athletes through a **secure access code**.
 
+Supported sports:
 
-Lactate Lab is a **private web application** used to manage lactate test data and perform basic performance analysis for cycling training.
+- 🚴 Cycling  
+- 🏃 Running  
+- 🏊 Swimming  
 
-The application is built with **Angular 21**, a **Node.js/Express backend**, and is deployed on **Google Cloud Run** using **Docker**.
-
-The system is intentionally **access-restricted** and uses **Google Cloud IAM** for backend authorization.
-
----
-
-## 📌 Application Overview
-
-- **Frontend:** Angular 21 (standalone APIs, Angular Material)
-- **Backend:** Node.js with Express
-- **Database:** Google Firestore (Native mode)
-- **Deployment:** Docker containers on Google Cloud Run
-- **Access Control:** Google Cloud IAM (backend)
-- **State Handling:** Angular signals, route guards, HTTP interceptors
+The project demonstrates **full-stack development, cloud architecture, data visualization, and sports performance analysis**.
 
 ---
 
-## ☁️ Google Cloud Architecture
+## Core Functionality
 
-### 🖥️ Frontend Deployment (Angular)
+### Coach Workflow
 
-**Cloud Run**
-- Service name: `lactate-lab-service`
-- Region: `europe-west1`
-- Purpose: Serves the Angular application over HTTPS
-- Authentication: `allow-unauthenticated`
-- Port: `8080`
-- Scaling: Fully managed by Cloud Run
+1. Create a **coach account**
+2. Login to the platform
+3. Create **athlete profiles**
+4. Record **lactate tests**
+5. Run **automatic analysis**
+6. Provide **test feedback**
 
-**Artifact Registry**
-- Repository: `lactate-lab-images`
-- Region: `europe-west1`
-- Image: Angular frontend Docker image
-
-**Custom Domain**
-- Domain: `andreopouloscoaching-lactatelab.com`
-- Mapping: Cloud Run domain mapping
-- SSL: Automatically managed by Google
-- Load Balancing: Google global HTTP(S) load balancing (implicit via Cloud Run)
+Each coach manages their own athletes and testing data.
 
 ---
 
-### 🔧 Backend Deployment (Node.js / Express)
+### Athlete Access
 
-**Cloud Run**
-- Service name: `lactate-lab-backend-service`
-- Region: `europe-west1`
-- Purpose: REST API for data storage and access validation
-- Authentication: **Require authentication (IAM)**
-- Port: `8080`
-- Runtime: Dockerized Node.js application
+Athletes **do not create accounts**.
 
-**Backend Endpoints**
-- `GET /access-check` – IAM-protected access validation
-- `GET /tests` – Fetch stored lactate tests
-- `POST /tests` – Store new lactate test data
+When a coach creates an athlete profile the system generates a **unique athlete access code**.
 
-> If a request reaches the backend, access has already been approved by Google IAM.
+Athletes can:
+
+1. Enter the platform  
+2. Select **“I am an athlete”**  
+3. Enter their **access code**  
+4. View their **test results and analysis**
+
+Athlete access is **read-only**.
 
 ---
 
-## 🗄️ Database
+## Lactate Test System
 
-**Firestore (Native Mode)**
-- Mode: Native
-- Collection: `tests`
-- Usage: Stores lactate test data
-- Access: Backend service account only
+Each lactate test consists of **multiple stages** defined by the coach.
 
----
+For every stage the following data can be recorded:
 
-## 🔐 Access Control & IAM
+- Stage number 
+- Stage length  
+- Power / Pace
+- Lactate concentration 
+- Heart Rate   
 
-### Backend Authorization
-- Mechanism: Google Cloud IAM
-- Role: `Cloud Run Invoker`
-- Principals: Specific Google accounts only
-- Frontend: Public
-- Backend: Restricted
-
-### Service Account
-- Used by the backend to access Firestore
-- Granted `roles/datastore.user`
-
-### Local Development
-- Uses a service account key via `GOOGLE_APPLICATION_CREDENTIALS`
-- Production relies on Cloud Run’s attached service account
+The system supports **any number of stages**, allowing flexible laboratory or field testing protocols.
 
 ---
 
-## 🧠 Frontend Access Handling
+## Lactate Curve Analysis
 
-- Startup access check via `/access-check`
-- Angular **signals** track access state
-- **Route guards** block protected routes
-- **HTTP interceptor** reacts to backend `403` responses
-- Unauthorized users are redirected to `/private-access`
+After entering stage data the system generates a **lactate curve** and performs automatic analysis.
 
----
+### Threshold Detection
 
-## 🐳 Docker & Deployment
+The application calculates:
 
-- Frontend and backend are **separately Dockerized**
-- Images built locally or via CI
-- Images stored in **Artifact Registry**
-- Deployed to **Cloud Run**
-- No VM or server management required
+- **LT1 — First Lactate Threshold**
+- **LT2 — Second Lactate Threshold**
+
+These thresholds are derived from the **lactate progression across stages**.
 
 ---
 
-## 📊 Monitoring & Logging
+## Training Zone Calculation
 
-**Cloud Logging**
-- Request logs
-- Application logs (stdout / stderr)
+Training zones are calculated using two methods.
 
-**Cloud Monitoring**
-- Cloud Run metrics (latency, requests, error rates)
+### TrainingPeaks Method
 
----
+Standard endurance training zones commonly used in coaching platforms.
 
-## 🛠️ Development Tools
+### Lactate Threshold Method
 
-- Angular CLI
-- Node.js
-- Docker
-- Google Cloud SDK (`gcloud`)
-- Cloud Shell
+Zones derived directly from the athlete’s **lactate curve and threshold values**.
+
+This allows coaches to compare **different physiological interpretations of the test**.
 
 ---
 
-## 🔒 Repository Access
+## Data Visualization
 
-This repository is **private**.
+Each test produces the following outputs.
 
-If you would like:
-- Access to the source code
-- A walkthrough of the architecture
-- A demo video of the application
+### Lactate Curve Graph
 
-📩 **Contact:**
-- **Email:** emmapapaioannou@outlook.com  
-- **GitHub:** https://github.com/emmapapaioan  
-- **LinkedIn:** https://www.linkedin.com/in/emma-papaioannou-49b770153  
+Displays:
+
+- Lactate progression per stage
+- Workload vs lactate relationship
+- LT1 and LT2 threshold points
+
+### Stage Data Table
+
+Structured overview of the recorded test:
+
+| Stage | Length | Power / Pace | Lactate | Heart Rate |
+|-------|--------|--------------|---------|------------|
+
+### Coach Feedback
+
+Each test includes a **coach feedback section** where the coach can write:
+
+- Performance interpretation  
+- Training recommendations  
+- Observations from the test  
+
+Athletes can view this feedback when accessing their results.
 
 ---
 
-## 📝 Notes
+## System Architecture
 
-This project focuses on:
-- Correct cloud architecture
-- Clear separation of frontend and backend
-- Real access control (IAM, not mock authentication)
-- Production deployment practices
+The application follows a **separated frontend / backend architecture** deployed on **Google Cloud**.
 
-It is not a demo scaffold, but a working private system.
+```
+
+Client Browser
+│
+▼
+Angular Frontend (Cloud Run)
+│
+▼
+Node.js / Express API (Cloud Run)
+│
+▼
+Google Firestore
+
+```
+
+---
+
+## Technology Stack
+
+### Frontend
+
+- **Angular 21**
+- Angular Material
+- Angular Signals
+- Standalone APIs
+- Route Guards
+- HTTP Interceptors
+
+Responsibilities:
+
+- User interface
+- Graph visualization
+- Access flow handling
+
+---
+
+### Backend
+
+- **Node.js**
+- **Express**
+- REST API architecture
+
+Responsibilities:
+
+- Authentication
+- Athlete management
+- Test storage
+- Analysis calculations
+- Access control
+
+---
+
+### Database
+
+**Google Firestore (Native Mode)**
+
+Stores:
+
+- Coaches
+- Athletes
+- Lactate tests
+- Stage data
+- Analysis results
+
+---
+
+## Cloud Infrastructure
+
+The application is **fully containerized** and deployed on **Google Cloud Platform**.
+
+### Cloud Run
+
+Two independent services:
+
+| Service | Purpose |
+|------|------|
+| Frontend Service | Serves Angular application |
+| Backend Service | Node.js REST API |
+
+### Artifact Registry
+
+Stores **Docker images** used for Cloud Run deployments.
+
+### Monitoring
+
+Google Cloud services used:
+
+- **Cloud Logging**
+- **Cloud Monitoring**
+
+Used to track:
+
+- Requests
+- Errors
+- Service latency
+- Application logs
+
+---
+
+## Security Model
+
+The platform implements two access levels.
+
+### Coaches
+
+- Account required
+- Full data management access
+
+### Athletes
+
+- Access via **unique athlete code**
+- **Read-only access**
+
+Athletes cannot modify or create data.
+
+---
+
+## Example Test Flow
+
+```
+
+Coach creates athlete
+│
+▼
+Athlete receives unique code
+│
+▼
+Coach records lactate test
+│
+▼
+Coach runs analysis
+│
+▼
+System calculates LT1 / LT2
+│
+▼
+Athlete views results
+
+```
+
+---
+
+## Development Tools
+
+- Angular CLI  
+- Node.js  
+- Docker  
+- Google Cloud SDK (`gcloud`)  
+- Cloud Shell  
+
+---
+
+## Project Goals
+
+This project demonstrates:
+
+- Full-stack web development  
+- Cloud-native architecture  
+- Containerized deployment  
+- Secure access control  
+- Data visualization  
+- Sports physiology analysis  
+
+The system is a **fully functional production-style application**, not a demo scaffold.
+
+---
+
+## Contact
+
+For access, a walkthrough, or a demo:
+
+**Email**  
+emmapapaioannou@outlook.com  
+
+**GitHub**  
+https://github.com/emmapapaioan  
+
+**LinkedIn**  
+https://www.linkedin.com/in/emma-papaioannou-49b770153
