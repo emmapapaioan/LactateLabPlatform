@@ -1,5 +1,8 @@
 # Lactate Lab
 
+🌐 **Live Application:**  
+https://andreopouloscoaching-lactatelab.com
+
 **Lactate Lab** is a cloud-based web application for **managing and analyzing lactate testing data** for endurance athletes.
 
 The platform allows coaches to record lactate tests, analyze physiological thresholds (**LT1 / LT2**), generate training zones, and share results with athletes through a **secure access code**.
@@ -18,6 +21,8 @@ The project demonstrates **full-stack development, cloud architecture, data visu
 
 ### Coach Workflow
 
+![Coach Login](coach-login.jpg)
+
 1. Create a **coach account**
 2. Login to the platform
 3. Create **athlete profiles**
@@ -30,6 +35,8 @@ Each coach manages their own athletes and testing data.
 ---
 
 ### Athlete Access
+
+![Athlete Access](athlete-access.jpg)
 
 Athletes **do not create accounts**.
 
@@ -47,6 +54,8 @@ Athlete access is **read-only**.
 ---
 
 ## Lactate Test System
+
+![New Test](new-test.jpg)
 
 Each lactate test consists of **multiple stages** defined by the coach.
 
@@ -83,9 +92,13 @@ Training zones are calculated using two methods.
 
 ### TrainingPeaks Method
 
+![Training Zones](training-zones1.jpg)
+
 Standard endurance training zones commonly used in coaching platforms.
 
 ### Lactate Threshold Method
+
+![Training Zones](training-zones2.jpg)
 
 Zones derived directly from the athlete’s **lactate curve and threshold values**.
 
@@ -98,9 +111,12 @@ This allows coaches to compare **different physiological interpretations of the 
 Each test produces the following outputs.
 
 ### Lactate Curve Graph
+
 ![Lactate Curve](lactate-curve.jpg)
-![Lactate Curve](lactate-curve-with-washout.jpg)
-![Lactate Curve](lactate-curve-adjust.jpg)
+
+![Lactate Curve with Washout](lactate-curve-with-washout.jpg)
+
+![Lactate Curve Adjut Thresholds](lactate-curve-adjust.jpg)
 
 Displays:
 
@@ -117,6 +133,7 @@ Each test includes a **coach feedback section** where the coach can write:
 - Observations from the test  
 
 Athletes can view this feedback when accessing their results.
+
 ![Lactate Curve](coach-notes.jpg)
 
 ### Stage Data Table
@@ -132,7 +149,6 @@ Structured overview of the recorded test:
 The application follows a **separated frontend / backend architecture** deployed on **Google Cloud**.
 
 ```
-
 Client Browser
 │
 ▼
@@ -143,7 +159,6 @@ Node.js / Express API (Cloud Run)
 │
 ▼
 Google Firestore
-
 ```
 
 ---
@@ -251,7 +266,6 @@ Athletes cannot modify or create data.
 ## Example Test Flow
 
 ```
-
 Coach creates athlete
 │
 ▼
@@ -268,7 +282,6 @@ System calculates LT1 / LT2
 │
 ▼
 Athlete views results
-
 ```
 
 ---
