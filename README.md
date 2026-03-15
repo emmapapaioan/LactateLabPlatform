@@ -17,6 +17,11 @@ The project demonstrates **full-stack development, cloud architecture, data visu
 
 ---
 
+## Demo
+https://github.com/user-attachments/assets/8f901017-15ce-4922-b8ca-21d9c226be7f
+
+---
+
 ## Core Functionality
 
 ### Coach Workflow
