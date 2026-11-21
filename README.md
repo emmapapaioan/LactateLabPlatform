@@ -9,24 +9,17 @@ The platform allows coaches to record lactate tests, analyze physiological thres
 
 Supported sports:
 
-- 🚴 Cycling  
-- 🏃 Running  
-- 🏊 Swimming  
+- 🚴 Cycling
+- 🏃 Running
+- 🏊 Swimming
 
 The project demonstrates **full-stack development, cloud architecture, data visualization, and sports performance analysis**.
-
----
-
-## Demo
-https://github.com/user-attachments/assets/8f901017-15ce-4922-b8ca-21d9c226be7f
 
 ---
 
 ## Core Functionality
 
 ### Coach Workflow
-
-![Coach Login](coach-login.jpg)
 
 1. Create a **coach account**
 2. Login to the platform
@@ -41,17 +34,15 @@ Each coach manages their own athletes and testing data.
 
 ### Athlete Access
 
-![Athlete Access](athlete-access.jpg)
-
 Athletes **do not create accounts**.
 
 When a coach creates an athlete profile the system generates a **unique athlete access code**.
 
 Athletes can:
 
-1. Enter the platform  
-2. Select **“I am an athlete”**  
-3. Enter their **access code**  
+1. Enter the platform
+2. Select **"I am an athlete"**
+3. Enter their **access code**
 4. View their **test results and analysis**
 
 Athlete access is **read-only**.
@@ -60,17 +51,15 @@ Athlete access is **read-only**.
 
 ## Lactate Test System
 
-![New Test](new-test.jpg)
-
 Each lactate test consists of **multiple stages** defined by the coach.
 
 For every stage the following data can be recorded:
 
-- Stage number 
-- Stage length  
+- Stage number
+- Stage length
 - Power / Pace
-- Lactate concentration 
-- Heart Rate   
+- Lactate concentration
+- Heart Rate
 
 The system supports **any number of stages**, allowing flexible laboratory or field testing protocols.
 
@@ -97,15 +86,11 @@ Training zones are calculated using two methods.
 
 ### TrainingPeaks Method
 
-![Training Zones](training-zones1.jpg)
-
 Standard endurance training zones commonly used in coaching platforms.
 
 ### Lactate Threshold Method
 
-![Training Zones](training-zones2.jpg)
-
-Zones derived directly from the athlete’s **lactate curve and threshold values**.
+Zones derived directly from the athlete's **lactate curve and threshold values**.
 
 This allows coaches to compare **different physiological interpretations of the test**.
 
@@ -117,12 +102,6 @@ Each test produces the following outputs.
 
 ### Lactate Curve Graph
 
-![Lactate Curve](lactate-curve.jpg)
-
-![Lactate Curve with Washout](lactate-curve-with-washout.jpg)
-
-![Lactate Curve Adjut Thresholds](lactate-curve-adjust.jpg)
-
 Displays:
 
 - Lactate progression per stage
@@ -133,19 +112,15 @@ Displays:
 
 Each test includes a **coach feedback section** where the coach can write:
 
-- Performance interpretation  
-- Training recommendations  
-- Observations from the test  
+- Performance interpretation
+- Training recommendations
+- Observations from the test
 
 Athletes can view this feedback when accessing their results.
 
-![Lactate Curve](coach-notes.jpg)
-
 ### Stage Data Table
 
-Structured overview of the recorded test:
-
-![Lactate Curve](test-stages.jpg)
+Structured overview of the recorded test.
 
 ---
 
@@ -153,7 +128,7 @@ Structured overview of the recorded test:
 
 The application follows a **separated frontend / backend architecture** deployed on **Google Cloud**.
 
-```
+```text
 Client Browser
 │
 ▼
@@ -226,7 +201,7 @@ The application is **fully containerized** and deployed on **Google Cloud Platfo
 Two independent services:
 
 | Service | Purpose |
-|------|------|
+|---|---|
 | Frontend Service | Serves Angular application |
 | Backend Service | Node.js REST API |
 
@@ -270,7 +245,7 @@ Athletes cannot modify or create data.
 
 ## Example Test Flow
 
-```
+```text
 Coach creates athlete
 │
 ▼
@@ -293,11 +268,11 @@ Athlete views results
 
 ## Development Tools
 
-- Angular CLI  
-- Node.js  
-- Docker  
-- Google Cloud SDK (`gcloud`)  
-- Cloud Shell  
+- Angular CLI
+- Node.js
+- Docker
+- Google Cloud SDK (`gcloud`)
+- Cloud Shell
 
 ---
 
@@ -305,12 +280,12 @@ Athlete views results
 
 This project demonstrates:
 
-- Full-stack web development  
-- Cloud-native architecture  
-- Containerized deployment  
-- Secure access control  
-- Data visualization  
-- Sports physiology analysis  
+- Full-stack web development
+- Cloud-native architecture
+- Containerized deployment
+- Secure access control
+- Data visualization
+- Sports physiology analysis
 
 The system is a **fully functional production-style application**, not a demo scaffold.
 
@@ -321,10 +296,10 @@ The system is a **fully functional production-style application**, not a demo sc
 For access, a walkthrough, or a demo:
 
 **Email**  
-emmapapaioannou@outlook.com  
+emmapapaioannou@outlook.com
 
 **GitHub**  
-https://github.com/emmapapaioan  
+https://github.com/emmapapaioan
 
 **LinkedIn**  
 https://www.linkedin.com/in/emma-papaioannou-49b770153
